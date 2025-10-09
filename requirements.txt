@@ -1,0 +1,6 @@
+datasets
+openai
+pandas
+python-dotenv
+tqdm
+pyyaml

@@ -1,0 +1,114 @@
+evaluation_criteria:
+  - name: "syntax"
+    prompt_template: |
+      Evaluate the MermaidJS output under <AGENT_RESPONSE> for syntax and structural correctness based on MermaidJS rules.
+      <EXPECTED_AGENT_RESPONSE> is provided below, treat it as one accepted solution reference; do not require a verbatim match.
+      #####
+      <AGENT_RESPONSE>
+      {agent_response}
+      #####
+      <EXPECTED_AGENT_RESPONSE>
+      {expected_agent_response}
+      #####
+      Is it proper MermaidJS syntax?
+      Are all participants declared using `participant ActorName` syntax?
+      Are activation/deactivation statements used and properly balanced?
+      Are `alt`, `else`, and `end` blocks closed correctly and nested if needed?
+      #####
+
+  - name: "mermaid_only"
+    prompt_template: |
+      Evaluate the agent's output under <AGENT_RESPONSE> to ensure it strictly contains MermaidJS code only.
+      <EXPECTED_AGENT_RESPONSE> is provided below, treat it as one accepted solution reference; do not require a verbatim match.
+      #####
+      <AGENT_RESPONSE>
+      {agent_response}
+      #####
+      <EXPECTED_AGENT_RESPONSE>
+      {expected_agent_response}
+      #####
+      Is the output wrapped in a valid Markdown block (e.g., ```sequenceDiagram)?
+      Does it avoid extra explanation, narration, or formatting beyond valid Mermaid syntax?
+      Is the output clean, parsable, and renderable in Mermaid?
+      
+      Responses with non-code text or mixed formatting should receive a lower score.
+      #####
+
+  - name: "logic"
+    prompt_template: |
+      Evaluate the MermaidJS output under <AGENT_RESPONSE> based on the task description in <AGENT_PROMPT> (and, the reference in <EXPECTED_AGENT_RESPONSE>) for logic and flow completeness. The expected output is one accepted solution; alternate but logically equivalent flows should not be penalized.
+      #####
+      <AGENT_PROMPT>
+      {agent_prompt}
+      #####
+      <AGENT_RESPONSE>
+      {agent_response}
+      #####
+      <EXPECTED_AGENT_RESPONSE>
+      {expected_agent_response}
+      #####
+      Is it proper MermaidJS syntax?
+      Does every request have a corresponding response?
+      Are alternate flows (e.g., success/failure, if/else) represented completely and clearly?
+      Are nested decision branches handled as required?
+      Does the diagram account for every described interaction and path (or match the accepted reference flow)?
+      #####
+
+  - name: "completeness"
+    prompt_template: |
+      Evaluate the MermaidJS output under <AGENT_RESPONSE> based on <AGENT_PROMPT> for completeness. <EXPECTED_AGENT_RESPONSE> is provided below, treat it as one accepted solution reference; do not require a verbatim match.
+      #####
+      <AGENT_PROMPT>
+      {agent_prompt}
+      #####
+      <AGENT_RESPONSE>
+      {agent_response}
+      #####
+      <EXPECTED_AGENT_RESPONSE>
+      {expected_agent_response}
+      #####
+      Is it proper MermaidJS syntax?
+      Does the diagram cover all participants, request/response pairs, and decision points described in the prompt (or equivalently as in the accepted reference)?
+      Are alternate flows and error paths handled as required?
+      Does the output reflect full coverage of described behavior, including minor flows?
+      #####
+
+  - name: "activation_handling"
+    prompt_template: |
+      Evaluate the use of activation and deactivation in the MermaidJS under <AGENT_RESPONSE> based on the <AGENT_PROMPT>. <EXPECTED_AGENT_RESPONSE> is provided below, treat it as one accepted solution reference; do not require a verbatim match.
+      #####
+      <AGENT_PROMPT>
+      {agent_prompt}
+      #####
+      <AGENT_RESPONSE>
+      {agent_response}
+      #####
+      <EXPECTED_AGENT_RESPONSE>
+      {expected_agent_response}
+      #####
+      Is it proper MermaidJS syntax?
+      Does the diagram properly use `activate` and `deactivate` to show control of execution?
+      Are all activated participants deactivated appropriately?
+      Are there any unnecessary `deactivate` statements where no activation occurred?
+      Does this improve the diagram's readability and traceability of actions?
+      #####
+
+  - name: "error_and_status_tracking"
+    prompt_template: |
+      Evaluate how clearly the MermaidJS under <AGENT_RESPONSE> handles error cases and status updates, based on the <AGENT_PROMPT>. <EXPECTED_AGENT_RESPONSE> is provided below, treat it as one accepted solution reference; do not require a verbatim match.
+      #####
+      <AGENT_PROMPT>
+      {agent_prompt}
+      #####
+      <AGENT_RESPONSE>
+      {agent_response}
+      #####
+      <EXPECTED_AGENT_RESPONSE>
+      {expected_agent_response}
+      #####
+      Is it proper MermaidJS syntax?
+      Does the diagram include explicit status updates?
+      Does the diagram clearly separate success and failure flows?
+      Does the diagram represent error-handling cases effectively?
+      Does the diagram track the state of key entities throughout the sequence?
+      #####
