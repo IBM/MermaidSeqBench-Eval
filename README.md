@@ -52,4 +52,14 @@ python eval.py \
 
 ### Cite this work
 If you would like to cite this work in a paper or a presentation, the following is recommended (BibTeX entry):
->  **Note.** Paper references will be added after formal publication.
+```
+@misc{shbita2025mermaidseqbenchevaluationbenchmarkllmtomermaid,
+      title={MermaidSeqBench: An Evaluation Benchmark for LLM-to-Mermaid Sequence Diagram Generation},
+      author={Basel Shbita and Farhan Ahmed and Chad DeLuca},
+      year={2025},
+      eprint={2511.14967},
+      archivePrefix={arXiv},
+      primaryClass={cs.SE},
+      url={https://arxiv.org/abs/2511.14967},
+}
+```
